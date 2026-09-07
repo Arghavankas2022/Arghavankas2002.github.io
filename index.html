@@ -116,13 +116,14 @@
       border-radius: 50%;
       box-shadow: none;
       border: 3px solid #ffffff;
-      transition: none;
+      filter: grayscale(100%);
+      transition: filter 0.5s ease;
+      cursor: pointer;
     }
 
-    .photo:hover {
-      transform: none;
-      box-shadow: none;
-      border-color: #ffffff;
+    .photo:hover,
+    .photo.in-color {
+      filter: grayscale(0%);
     }
 
     .name {
@@ -331,7 +332,7 @@
   <div class="content">
     <aside class="sidebar">
       <div class="photo-container">
-        <img src="IMG_1567.jpeg" alt="Arghavan Kassraie" class="photo">
+        <img src="IMG_1567.jpeg" alt="Arghavan Kassraie" class="photo" id="profilePhoto">
       </div>
       <div>
         <div class="name">Arghavan Kassraie</div>
@@ -413,6 +414,12 @@
         symbolEl.style.animationDelay = (Math.random() * 20) + 's';
         symbolsContainer.appendChild(symbolEl);
       }
+    });
+
+    // Photo toggle: black & white by default, click/tap to switch to color and back
+    const profilePhoto = document.getElementById('profilePhoto');
+    profilePhoto.addEventListener('click', () => {
+      profilePhoto.classList.toggle('in-color');
     });
 
     // Smooth page load animations
